@@ -7,8 +7,8 @@ interface OWMWeather {
 
 interface OWMTemp {
     day: number;
-    min?: number;
-    max?: number;
+    min: number;
+    max: number;
     night: number;
     eve: number;
     morn: number;

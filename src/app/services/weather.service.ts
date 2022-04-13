@@ -59,6 +59,7 @@ export class WeatherService implements OnDestroy {
         let params = new HttpParams()
             .set('lat', lat)
             .set('lon', lon)
+            .set('units', 'metric')
             .set('exclude', 'minutely,hourly,alerts,current')
             .set('appid', environment.owmApiKey);
         return this.http.get<OWMOnecallResponse>(baseUrl, {params});
