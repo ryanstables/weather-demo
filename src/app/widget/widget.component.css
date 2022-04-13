@@ -1,9 +1,9 @@
 :host .widget {
-  background: rgba(0, 0, 0, 0.1);
   margin: 35px 100px;
   border-radius: 10px;
   padding: 20px;
   background-size: cover;
+  border: 2px solid black;
 }
 :host .widget .top-row {
   display: flex;
@@ -15,8 +15,10 @@
   margin-left: 15px;
 }
 :host .widget.sun {
+  color: white;
   background-image: url('../../assets/sun.jpg');
 }
 :host .widget.rain {
+  color: rgba(0, 0, 0, 0.8);
   background-image: url('../../assets/rain.jpg');
 }

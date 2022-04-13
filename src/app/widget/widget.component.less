@@ -1,10 +1,10 @@
 :host {
     .widget {
-        background: rgba(0, 0, 0, 0.1);
         margin: 35px 100px;
         border-radius: 10px;
         padding: 20px;
         background-size: cover;
+        border: 2px solid black;
         .top-row {
             display: flex;
             .title {
@@ -15,10 +15,12 @@
             }
         }
         &.sun {
+            color: white;
             background-image: url('../../assets/sun.jpg');
             
         }
         &.rain {
+            color: rgba(0, 0, 0, 0.8);
             background-image: url('../../assets/rain.jpg');
         }
     }

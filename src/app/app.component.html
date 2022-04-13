@@ -1,6 +1,12 @@
 <app-toolbar></app-toolbar>
 
 <div class="widgets">
+    <h1 
+        class="title"
+        *ngIf="locations.selectedLocation$ | async as loc"
+    >
+        {{loc.name}}
+    </h1>
     <app-widget
         *ngFor="let wo of weather.weeklyWeatherConditions$ | async"
         [weatherObject]="wo"
