@@ -1,0 +1,25 @@
+:host {
+    .widget {
+        background: rgba(0, 0, 0, 0.1);
+        margin: 35px 100px;
+        border-radius: 10px;
+        padding: 20px;
+        background-size: cover;
+        .top-row {
+            display: flex;
+            .title {
+                flex-grow: 1;
+            }
+            .date {
+                margin-left: 15px;
+            }
+        }
+        &.sun {
+            background-image: url('../../assets/sun.jpg');
+            
+        }
+        &.rain {
+            background-image: url('../../assets/rain.jpg');
+        }
+    }
+}

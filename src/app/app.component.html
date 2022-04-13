@@ -1,40 +1,8 @@
-<mat-toolbar color="primary" fixed>
-    
-    <div class="left">
-        <mat-icon>thermostat</mat-icon>
-        <span>Weather!</span>
-    </div>
+<app-toolbar></app-toolbar>
 
-    <div 
-        class="right" 
-        *ngIf="locations.selectedLocation$ | async as sl"
-    >
-        <button 
-            mat-button
-            color="secondary"
-            *ngFor="let location of locations.locations$ | async"
-            [class.selected]="location === sl"
-            (click)="onClick(location)"
-        >
-            {{location.name}}
-        </button>
-    </div>
-
-</mat-toolbar>
-
-
-
-<div *ngFor="let wc of weather.weeklyWeatherConditions$ | async">
-    <h1>
-        {{wc.description | capitalise}}
-    </h1>
-    <p>
-        Temp: {{wc.temperature.min | celsius}} - {{wc.temperature.max | celsius}}
-    </p>
-    <p>
-        Humidity: {{wc.humidity  | percentage}}
-    </p>
-    <p>
-        Chance of rain: {{wc.chanceOfRain * 100 | percentage}}
-    </p>
+<div class="widgets">
+    <app-widget
+        *ngFor="let wo of weather.weeklyWeatherConditions$ | async"
+        [weatherObject]="wo"
+    ></app-widget>
 </div>

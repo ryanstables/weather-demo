@@ -1,0 +1,22 @@
+<div 
+    class="widget"
+    [ngClass]="weatherObject.chanceOfRain > 0.5 ? 'rain' : 'sun'"
+>
+    <div class="top-row">
+        <h1 class="title">
+            {{weatherObject.description | capitalise}}
+        </h1>
+        <h2 class="date">
+            {{formatDate(weatherObject.date)}}
+        </h2>
+    </div>
+    <p>
+        Temp: {{weatherObject.temperature.min | celsius}} - {{weatherObject.temperature.max | celsius}}
+    </p>
+    <p>
+        Humidity: {{weatherObject.humidity  | percentage}}
+    </p>
+    <p>
+        Chance of rain: {{weatherObject.chanceOfRain * 100 | percentage}}
+    </p>
+</div>

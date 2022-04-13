@@ -1,0 +1,20 @@
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+:host .left {
+  display: flex;
+  align-items: center;
+}
+:host .right {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+:host button.selected {
+  border: 1px solid white;
+}
