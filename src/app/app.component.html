@@ -1,11 +1,28 @@
-<div class="buttons">
-    <button 
-        *ngFor="let location of locations.locations$ | async"
-        (click)="onClick(location)"
+<mat-toolbar color="primary" fixed>
+    
+    <div class="left">
+        <mat-icon>thermostat</mat-icon>
+        <span>Weather!</span>
+    </div>
+
+    <div 
+        class="right" 
+        *ngIf="locations.selectedLocation$ | async as sl"
     >
-        {{location.name}}
-    </button>    
-</div>
+        <button 
+            mat-button
+            color="secondary"
+            *ngFor="let location of locations.locations$ | async"
+            [class.selected]="location === sl"
+            (click)="onClick(location)"
+        >
+            {{location.name}}
+        </button>
+    </div>
+
+</mat-toolbar>
+
+
 
 <div *ngFor="let wc of weather.weeklyWeatherConditions$ | async">
     <h1>

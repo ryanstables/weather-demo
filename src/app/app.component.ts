@@ -9,7 +9,8 @@ import { WeatherService } from './services/weather.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  
+    
+    title = 'Weather';
     weatherData: any = null;
 
     constructor(
@@ -17,8 +18,7 @@ export class AppComponent {
         public locations: LocationsService
     ) {
     }
-    title = 'weather';
-
+    
     async onClick(loc: Location) {
         this.locations.updateLocation(loc);
     }
