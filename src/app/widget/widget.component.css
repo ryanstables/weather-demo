@@ -1,5 +1,5 @@
 :host .widget {
-  margin: 35px 100px;
+  margin: 35px 0px;
   border-radius: 10px;
   padding: 20px;
   background-size: cover;
@@ -21,4 +21,13 @@
 :host .widget.rain {
   color: rgba(0, 0, 0, 0.8);
   background-image: url('../../assets/rain.jpg');
+}
+@media (max-width: 600px) {
+  .top-row {
+    flex-direction: column-reverse;
+  }
+  .top-row .date {
+    margin-left: 0px !important;
+    margin-bottom: 0px;
+  }
 }

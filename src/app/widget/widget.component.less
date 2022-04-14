@@ -1,6 +1,6 @@
 :host {
     .widget {
-        margin: 35px 100px;
+        margin: 35px 0px;
         border-radius: 10px;
         padding: 20px;
         background-size: cover;
@@ -24,4 +24,16 @@
             background-image: url('../../assets/rain.jpg');
         }
     }
+}
+
+
+@media (max-width: 600px) { 
+    .top-row {
+        flex-direction: column-reverse;
+        .date {
+            margin-left: 0px !important;
+            margin-bottom: 0px;
+        }
+    }
+    
 }
