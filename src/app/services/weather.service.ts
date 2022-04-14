@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { catchError, map, retry, switchMap, takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { OWMOnecallResponse, WeatherCondition } from '../interfaces/interfaces';
 import { LocationsService } from './locations.service';
@@ -13,8 +13,7 @@ import { addDays } from 'date-fns';
 export class WeatherService implements OnDestroy {
 
     weatherConditions$ = new BehaviorSubject<OWMOnecallResponse | null>(null);
-    
-    weeklyWeatherConditions$ = new BehaviorSubject<WeatherCondition[]>([]);    
+    weeklyWeatherConditions$ = new BehaviorSubject<WeatherCondition[] | null>(null);
     
     private destroy$ = new Subject();
     
@@ -41,7 +40,7 @@ export class WeatherService implements OnDestroy {
                         chanceOfRain: day.pop
                     }));    
                 } else {
-                    return [];
+                    return null;
                 }
             }),
             takeUntil(this.destroy$)
@@ -54,7 +53,7 @@ export class WeatherService implements OnDestroy {
         this.destroy$.complete();
     }
 
-    getCurrentWeather(lat: string, lon: string): Observable<OWMOnecallResponse> {
+    getCurrentWeather(lat: string, lon: string): Observable<OWMOnecallResponse | null> {
         const baseUrl = 'https://api.openweathermap.org/data/2.5/onecall';
         let params = new HttpParams()
             .set('lat', lat)
@@ -62,7 +61,13 @@ export class WeatherService implements OnDestroy {
             .set('units', 'metric')
             .set('exclude', 'minutely,hourly,alerts,current')
             .set('appid', environment.owmApiKey);
-        return this.http.get<OWMOnecallResponse>(baseUrl, {params});
+        return this.http.get<OWMOnecallResponse>(baseUrl, {params}).pipe(
+            retry(3),
+            catchError(err => {
+                console.error(err);
+                return of(null);
+            })
+        );
     }
 
 }

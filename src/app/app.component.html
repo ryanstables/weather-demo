@@ -1,6 +1,6 @@
 <app-toolbar></app-toolbar>
 
-<div class="widgets">
+<div class="widgets" *ngIf="weather.weeklyWeatherConditions$ | async as weatherConditions; else errorMessage">
     <h1 
         class="title"
         *ngIf="locations.selectedLocation$ | async as loc"
@@ -8,7 +8,17 @@
         {{loc.name}}
     </h1>
     <app-widget
-        *ngFor="let wo of weather.weeklyWeatherConditions$ | async"
+        *ngFor="let wo of weatherConditions"
         [weatherObject]="wo"
     ></app-widget>
 </div>
+
+<ng-template #errorMessage>
+    <p>
+        We're having some issues loading the weather!
+    </p>
+    <p>
+        Try again later.
+    </p>
+    
+</ng-template>

@@ -55,7 +55,10 @@ export class LocationsService {
             .set('limit', '1')
             .set('q', loc.name)
             .set('appid', environment.owmApiKey);
-            const response = await this.http.get<OWMGeoLocationResponse[]>(url, {params}).toPromise();
+            const response = await this.http.get<OWMGeoLocationResponse[]>(url, {params}).toPromise().catch(err => {
+                console.error(err);
+                return null;
+            });
             if(response) {
                 console.log(response);
                 loc.lat = response[0].lat.toString();

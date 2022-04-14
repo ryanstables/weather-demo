@@ -16,7 +16,7 @@
 }
 :host .widget.sun {
   color: white;
-  background-image: url('../../assets/sun.jpg');
+  background-image: url('../../assets/sun2.jpg');
 }
 :host .widget.rain {
   color: rgba(0, 0, 0, 0.8);
